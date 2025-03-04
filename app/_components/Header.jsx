@@ -4,6 +4,7 @@ import Image from 'next/image';
 import React from 'react';
 import Authentication from '../_components/Authentication';
 import { useAuthContext } from '@/components/Provider';
+import Link from 'next/link';
 
 function Header() {
   const { user } = useAuthContext();
@@ -30,7 +31,10 @@ function Header() {
         </Authentication>
       ) : (
         <div className="flex items-center gap-4">
+          <Link href="/dashboard">
           <Button>Dashboard</Button>
+          </Link>
+          
           <Image
             src={user?.photoURL || '/default-avatar.png'} // Ensure a fallback image if no photoURL is available
             alt="user"
