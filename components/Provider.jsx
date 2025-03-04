@@ -19,9 +19,9 @@ function Provider({ children }) {
         setUser(user);
 
         const result = await CreateUser({
-            name: user.displayName,
-            email: user.email,
-            photoURL: user.photoURL
+            name: user?.displayName,
+            email: user?.email,
+            photoURL: user?.photoURL
            
         })
         console.log(result);
