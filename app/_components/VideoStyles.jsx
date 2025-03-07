@@ -1,37 +1,37 @@
 import React, { useState } from 'react'
 
+export const options =[
+  {
+    name: "Cinematic",
+    image :'/cinematic.jpg',
 
+  },
+  {
+    name: "Cartoon",
+    image :'/cartoon.jpg',
+  },
+  {
+    name : "Cyberpunk",
+    image :'/cyberounk.png',
+  },
+  {
+    name: "Watercolor",
+    image :'/wartercolor.png',
+  },
+  {
+    name: "Retro",
+    image :'/retro.png',
+  },
+  {
+    name: "Nature",
+    image :'/nature.png',
+  }
+]
 
 function VideoStyles({handleFormSubmit}) {
   const [selectedStyle, setSelectedStyle] = useState();
 
-  const options =[
-    {
-      name: "Cinematic",
-      image :'/cinematic.jpg',
-
-    },
-    {
-      name: "Cartoon",
-      image :'/cartoon.jpg',
-    },
-    {
-      name : "Cyberpunk",
-      image :'/cyberounk.png',
-    },
-    {
-      name: "Watercolor",
-      image :'/wartercolor.png',
-    },
-    {
-      name: "Retro",
-      image :'/retro.png',
-    },
-    {
-      name: "Nature",
-      image :'/nature.png',
-    }
-  ]
+    
   return (
     <div className='mt-7'>
    <h2 className='text-2xl font-bold'>Video Styles</h2>
