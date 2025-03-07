@@ -8,20 +8,22 @@ export const createNewUser = mutationGeneric({
         photoURL: v.string(),
     },
     handler:async(ctx , args) =>{
+
         // check if user already exists
         const user = await ctx.db.query("users")
         .filter((q)=> q.eq(q.field("email"),args.email))
         .collect();
 
         if(!user[0]?.email){
-            // user doesn't exist, create new user
-            const result = await ctx.db.insert("users",{
+            const userData = {
                 name: args.name,
                 email: args.email,
                 photoURL: args.photoURL,
                 credits: 3
-            });
-            return result
+            }
+            // user doesn't exist, create new user
+            const result = await ctx.db.insert("users",userData);
+            return userData
         }
         return user[0];
     }

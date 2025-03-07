@@ -12,7 +12,7 @@ function AppHeader() {
 
     return (
         <div className='relative p-3'>
-            <SidebarTrigger />
+            {/* <SidebarTrigger /> */}
             {photoURL ? (
                 <Image
                     src={photoURL}

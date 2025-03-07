@@ -13,21 +13,31 @@ function Provider({ children }) {
     const CreateUser = useMutation(api.users.createNewUser);
    
     
-  useEffect(() => {
-    const unSubscribe = onAuthStateChanged (auth, async(user) => {
-      console.log(user);
-        setUser(user);
-
-        const result = await CreateUser({
-            name: user?.displayName,
-            email: user?.email,
-            photoURL: user?.photoURL
-           
-        })
-        console.log(result);
-    });
-    return unSubscribe;
-  }, []);
+    useEffect(() => {
+      const unSubscribe = onAuthStateChanged(auth, async (user) => {
+          console.log("Auth State Changed:", user);
+         
+          if (user) {
+              // Only create user if they are logged in
+              try {
+                  const result = await CreateUser({
+                      name: user.displayName,
+                      email: user.email,
+                      photoURL: user.photoURL
+                  });
+                  console.log("User created:", result);
+                  setUser(result);
+              } catch (error) {
+                  console.error("Error creating user:", error);
+              }
+          } else {
+              console.warn("No user logged in, skipping user creation.");
+          }
+      });
+  
+      return unSubscribe;
+  }, [CreateUser]); // Add dependency
+  
   return (
     <div>
       <AuthContext.Provider value={{ user}}>
